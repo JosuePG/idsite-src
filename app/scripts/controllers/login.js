@@ -27,7 +27,7 @@ angular.module('stormpathIdpApp')
     });
 
     var googleIsSignedIn = false;
-
+console.log("idsite: ", document.URL);
     function initFB(){
       $window.fbAsyncInit = function() {
         var FB = $window.FB;
