@@ -2,6 +2,8 @@
 
 angular.module('stormpathIdpApp')
   .controller('LoginCtrl', function ($scope,Stormpath,$window) {
+
+    console.log("1: idsite: ", document.URL);
     $scope.ready = false;
     $scope.canRegister = true;
     $scope.errors = {
@@ -27,7 +29,7 @@ angular.module('stormpathIdpApp')
     });
 
     var googleIsSignedIn = false;
-console.log("idsite: ", document.URL);
+console.log("2: idsite: ", document.URL);
     function initFB(){
       $window.fbAsyncInit = function() {
         var FB = $window.FB;
