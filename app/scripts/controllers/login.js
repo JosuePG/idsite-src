@@ -2,7 +2,7 @@
 
 angular.module('stormpathIdpApp')
   .controller('LoginCtrl', function ($scope,Stormpath,$window) {
-    console.log("LOGIN....");
+    console.log("---> stormath: ", Stormpath);
     $scope.ready = false;
     $scope.canRegister = true;
     $scope.errors = {
@@ -15,7 +15,6 @@ angular.module('stormpathIdpApp')
     };
 
     Stormpath.init.then(function initSuccess(){
-      console.log("Stormpath.client.jwtPayload:" ,Stormpath.client.jwtPayload);
       $scope.organizationNameKey = Stormpath.getOrganizationNameKey();
       $scope.showOrganizationField = Stormpath.client.jwtPayload.sof;
       $scope.disableOrganizationField = $scope.organizationNameKey !== '';
