@@ -20,6 +20,11 @@ angular.module('stormpathIdpApp')
       $scope.disableOrganizationField = $scope.organizationNameKey !== '';
       $scope.canRegister = !!Stormpath.idSiteModel.passwordPolicy;
       $scope.providers = Stormpath.providers;
+      //GET THE APPLICATION NAME FROM THE CLIENT
+      $scope.AKQA_application = Stormpath.client.jwtPayload.state;
+
+changeCSS(Stormpath.client.jwtPayload.state);
+
       $scope.ready = true;
       $scope.hasSocial = $scope.providers.length > 0;
       if(Stormpath.getProvider('facebook')){
@@ -49,6 +54,34 @@ angular.module('stormpathIdpApp')
         fjs.parentNode.insertBefore(js, fjs);
       }($window.document, 'script', 'facebook-jssdk'));
     }
+
+function changeCSS(appName){
+    var oldlink = document.getElementsByTagName("link").item(0);
+    console.log("old------>",oldlink);
+
+    var newlink = document.createElement("link");
+    newlink.setAttribute("rel", "stylesheet");
+    newlink.setAttribute("type", "text/css");
+    newlink.setAttribute("href", appName);
+
+console.log("new------>",newlink);
+    document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
+}
+
+
+
+function changeCSS(appName){
+
+console.log("D-bug-----------, appName: ", appName);
+    var oldlink = document.getElementsByTagName("link").item(0);
+console.log("D-bug-----------, oldlink: ", oldlink);
+    var newlink = document.createElement("link");
+    newlink.setAttribute("rel", "stylesheet");
+    newlink.setAttribute("type", "text/css");
+    newlink.setAttribute("href", (appName + ".css");
+console.log("D-bug-----------, newlink: ", newlink);
+    document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
+}
 
     function clearErrors(){
       Object.keys($scope.errors).map(function(k){$scope.errors[k]=false;});
